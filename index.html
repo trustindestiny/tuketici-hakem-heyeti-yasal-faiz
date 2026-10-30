@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10233f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Yasal Faiz">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Tüketici Hakem Heyeti kararları için dönemsel kanuni faiz hesaplayıcısı.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
+<title>Tüketici Hakem Heyeti | Yasal Faiz Hesaplayıcı</title>
+<style>
+:root{color-scheme:light;--navy:#10233f;--navy2:#1b416b;--blue:#2864a8;--ink:#1b2738;--muted:#69778a;--line:#e4eaf1;--soft:#f5f8fc;--green:#117b58;--greenbg:#eaf7f1;--amber:#93611b;--amberbg:#fff7e8;--white:#fff;--shadow:0 14px 40px rgba(19,42,73,.09)}
+*{box-sizing:border-box}html{min-height:100%;-webkit-text-size-adjust:100%}body{margin:0;background:#f2f5f9;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;padding-bottom:env(safe-area-inset-bottom)}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}.page{max-width:1040px;margin:0 auto;padding:clamp(14px,3vw,30px) clamp(12px,2.3vw,20px) calc(35px + env(safe-area-inset-bottom))}
+.hero{background:linear-gradient(125deg,#10233f 0%,#173d68 72%,#24517d 100%);color:#fff;border-radius:24px;padding:clamp(23px,4vw,32px);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"₺";position:absolute;right:28px;top:-40px;font-size:190px;font-weight:800;color:rgba(255,255,255,.055);line-height:1;pointer-events:none}.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#b8cce2;font-weight:800}.hero h1{margin:8px 0;font-size:clamp(27px,5vw,39px);line-height:1.12;letter-spacing:-.04em;max-width:760px}.hero p{margin:0;max-width:720px;color:#d6e2ef;font-size:14px}.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}.pill{font-size:11px;padding:5px 9px;border-radius:999px;border:1px solid #ffffff35;color:#e7f0f9;background:#ffffff12}
+.layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:17px;margin-top:18px;align-items:start}.stack{display:grid;gap:16px}.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:clamp(16px,2.5vw,22px);box-shadow:0 4px 18px #142b4809}.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}.card h2{margin:0;font-size:17px;letter-spacing:-.02em}.sub{font-size:12px;color:var(--muted);margin:4px 0 0}.section-no{height:29px;width:29px;border-radius:9px;background:#edf3fa;color:var(--blue);font-weight:800;display:grid;place-items:center;font-size:12px;flex:none}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field.full{grid-column:1/-1}label{font-size:12px;font-weight:750;color:#34445a}.control{width:100%;min-width:0;height:48px;border:1px solid #d7e0eb;border-radius:11px;padding:0 12px;color:var(--ink);background:#fff;outline:none;font-size:16px;transition:.15s}.control:focus{border-color:#5c8fc9;box-shadow:0 0 0 3px #2864a81f}.money-wrap{position:relative}.money-wrap .control{padding-right:48px}.suffix{position:absolute;right:13px;top:50%;transform:translateY(-50%);font-weight:750;color:var(--muted);font-size:12px;pointer-events:none}.hint{font-size:10px;color:#8491a2;margin-top:-2px}
+.note{font-size:11px;color:#586a80;background:#f4f7fb;border:1px solid #e5ebf2;border-radius:11px;padding:11px 12px;margin-top:14px}.note strong{color:#30445d}.note.amber{background:var(--amberbg);border-color:#f4e4c5;color:#76551d}.note.green{background:var(--greenbg);border-color:#d6eee3;color:#246448}
+.result-card{background:linear-gradient(180deg,#fff,#fbfdff)}.result-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.status{font-size:10px;font-weight:800;color:var(--green);background:var(--greenbg);padding:6px 9px;border-radius:999px}.total-label{font-size:12px;color:var(--muted);font-weight:650;margin-top:17px}.total{font-size:clamp(32px,6vw,44px);font-weight:850;letter-spacing:-.05em;color:var(--navy);margin:2px 0 3px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.total small{font-size:16px;font-weight:750;letter-spacing:0;color:#617287}.result-meta{font-size:11px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.stat{background:var(--soft);border:1px solid #e9eef4;border-radius:11px;padding:11px}.stat .k{font-size:10px;color:var(--muted);font-weight:650}.stat .v{font-size:17px;font-weight:850;color:#263950;margin-top:3px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{border:0;border-radius:11px;min-height:43px;padding:10px 13px;font-weight:750;font-size:12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.15s}.btn.primary{background:var(--navy);color:#fff}.btn.primary:active{background:#1b3b62}.btn.secondary{background:#edf2f8;color:#30445d}.btn.ghost{background:#fff;border:1px solid var(--line);color:#53647a}.btn.small{min-height:37px;padding:7px 10px;font-size:11px}.btn:focus-visible{outline:3px solid #2864a840;outline-offset:2px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:11px;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;min-width:390px}th{background:#f5f8fb;text-align:left;font-size:10px;letter-spacing:.035em;color:#627187;padding:10px;font-weight:850}td{padding:8px;border-top:1px solid #edf1f5;font-size:11px;vertical-align:middle}td input{width:100%;min-width:108px;height:38px;border:1px solid #dfe6ee;border-radius:8px;padding:0 8px;font-size:13px;color:#27374c;background:#fff}td input.rate{min-width:70px;text-align:right}td .remove{border:0;background:#fff0f0;color:#b64c4c;border-radius:8px;width:34px;height:34px;font-size:18px;line-height:1}
+.rate-actions{display:flex;justify-content:space-between;align-items:center;gap:9px;margin-top:11px;flex-wrap:wrap}.rate-explain{font-size:10px;color:var(--muted)}
+.breakdown{margin-top:16px}.breakdown h3{font-size:13px;margin:0 0 9px}.breakdown table{min-width:490px}.breakdown th,.breakdown td{padding:9px}.breakdown td:last-child,.breakdown th:last-child{text-align:right}.empty{font-size:11px;color:#8190a2;padding:13px;text-align:center}
+.install{margin-top:16px;background:#f4f7fb;border:1px solid #e3eaf2;border-radius:14px;padding:13px 14px;display:flex;gap:11px;align-items:flex-start}.install-icon{width:34px;height:34px;border-radius:10px;background:#e3edf8;color:#24517d;display:grid;place-items:center;flex:none;font-size:18px}.install p{font-size:11px;color:#586a80;margin:3px 0 0}.install strong{font-size:12px;color:#253951}
+.footer{margin-top:19px;padding:15px 4px 0;color:#738197;font-size:10px}.footer a{color:#456d9b;text-decoration:none}.foot-links{display:flex;flex-wrap:wrap;gap:13px;margin-top:7px}.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translate(-50%,18px);opacity:0;background:#172b45;color:white;padding:10px 15px;border-radius:10px;font-size:12px;box-shadow:var(--shadow);transition:.2s;pointer-events:none;z-index:20;max-width:calc(100% - 24px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.error{display:none;color:#a93b3b;font-size:11px;margin-top:11px}.error.show{display:block}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.page{padding-top:13px}.hero{border-radius:19px}.hero:after{right:5px;font-size:135px}.layout>.stack:first-child{order:1}.layout>.stack:last-child{order:2}}
+@media(max-width:420px){.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.stats{grid-template-columns:1fr 1fr}.card{padding:15px}.hero p{font-size:13px}.btn{flex:1}.rate-actions .btn{flex:0 0 auto}.pills{gap:5px}}
+@media print{body{background:#fff}.page{max-width:none;padding:0}.hero{background:#fff;color:#10233f;box-shadow:none;border:1px solid #dce3eb}.hero p,.eyebrow,.pill{color:#45576c}.pill{border-color:#dce3eb;background:#fff}.hero:after{display:none}.layout{grid-template-columns:1fr 1fr}.card{box-shadow:none;break-inside:avoid}.actions,.rate-actions .btn,.remove,.install,.footer .foot-links{display:none!important}.control,td input{border:0;padding-left:0}.note{break-inside:avoid}.footer{margin-top:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="hero">
+<div class="eyebrow">Tüketici Hakem Heyeti kararları için</div>
+<h1>Yasal Faiz Hesaplayıcı</h1>
+<p>Ana paranı ve kararında belirtilen faiz başlangıç tarihini gir. Değişen kanuni faiz oranları dönemlere ayrılarak basit faiz üzerinden hesaplansın.</p>
+<div class="pills"><span class="pill">3095 sayılı Kanun</span><span class="pill">Dönemsel oran hesabı</span><span class="pill">Bileşik faiz yok</span><span class="pill">Çevrimdışı çalışma</span></div>
+</header>
+<main class="layout">
+<div class="stack">
+<section class="card">
+<div class="card-head"><div><h2>Alacak bilgileri</h2><p class="sub">Kararın hüküm bölümündeki tutar ve faiz tarihini kullan.</p></div><div class="section-no">01</div></div>
+<div class="field-grid">
+<div class="field full"><label for="principal">Ana para</label><div class="money-wrap"><input class="control" id="principal" inputmode="decimal" placeholder="Örn. 25.000,00" autocomplete="off"><span class="suffix">TL</span></div><span class="hint">Hakem heyetinin iadesine karar verdiği tutar.</span></div>
+<div class="field"><label for="startDate">Faiz başlangıç tarihi</label><input class="control" type="date" id="startDate"><span class="hint">Kararda yazan tarih.</span></div>
+<div class="field"><label for="endDate">Hesaplama / ödeme tarihi</label><input class="control" type="date" id="endDate"><span class="hint">Varsayılan olarak bugün.</span></div>
+</div>
+<div class="note"><strong>Tarih önemli:</strong> Başvuru tarihi, temerrüt tarihi veya başka bir tarih ancak kararın hüküm fıkrası ve dosyanın koşulları bunu gerektiriyorsa başlangıç alınmalıdır. Kararda yazan ifadeyi esas al.</div>
+<div class="error" id="errorBox" role="alert"></div>
+</section>
+<section class="card">
+<div class="card-head"><div><h2>Yasal faiz oranları</h2><p class="sub">Oran tarihçesini ihtiyacına göre düzenleyebilirsin.</p></div><div class="section-no">02</div></div>
+<div class="table-wrap"><table aria-label="Dönemsel yasal faiz oranları"><thead><tr><th>Başlangıç tarihi</th><th>Yıllık faiz (%)</th><th></th></tr></thead><tbody id="rateRows"></tbody></table></div>
+<div class="rate-actions"><span class="rate-explain">Yeni bir oran yürürlüğe girerse başlangıç tarihini ekle.</span><button class="btn secondary small" id="addRate" type="button">＋ Dönem ekle</button></div>
+<div class="note amber">Oran tablosu varsayılan dönemlerle gelir. Hesaplama öncesinde yürürlük tarihlerini ve kararına uygulanacak faiz türünü kontrol et.</div>
+</section>
+</div>
+<div class="stack">
+<section class="card result-card">
+<div class="result-top"><h2>Hesaplama sonucu</h2><span class="status" id="status">Hesaplamaya hazır</span></div>
+<div class="total-label">Faiz dahil tahmini toplam alacak</div><div class="total" id="total">— <small>TL</small></div><div class="result-meta" id="resultMeta">Ana para ve tarihleri girerek hesaplamayı başlat.</div>
+<div class="stats">
+<div class="stat"><div class="k">Ana para</div><div class="v" id="principalOut">—</div></div>
+<div class="stat"><div class="k">Toplam faiz</div><div class="v" id="interestOut">—</div></div>
+<div class="stat"><div class="k">Faiz işleyen gün</div><div class="v" id="daysOut">—</div></div>
+<div class="stat"><div class="k">Uygulanan dönem</div><div class="v" id="periodsOut">—</div></div>
+</div>
+<div class="actions"><button class="btn primary" id="copyBtn" type="button">Özeti kopyala</button><button class="btn secondary" id="printBtn" type="button">Yazdır / PDF</button><button class="btn ghost" id="resetBtn" type="button">Temizle</button></div>
+<div class="breakdown"><h3>Dönem dönem faiz dökümü</h3><div id="breakdownWrap"><div class="empty">Henüz hesaplama yapılmadı.</div></div></div>
+</section>
+<div class="install">
+<div class="install-icon">＋</div><div><strong>iPhone ana ekranına ekle</strong><p>Bu sayfayı Safari'de aç. Paylaş düğmesine dokun, ardından <b>Ana Ekrana Ekle</b> seçeneğini kullan. Uygulama simgesiyle tam ekran açılabilir ve çevrimdışı çalışabilir.</p></div>
+</div>
+<section class="card">
+<div class="card-head"><div><h2>Hesaplama yöntemi</h2><p class="sub">Basit faiz · gerçek gün / 365</p></div><div class="section-no">03</div></div>
+<div class="note green">Faiz, her dönem için ana para üzerinden hesaplanır; birikmiş faize yeniden faiz yürütülmez. Hesaplamada başlangıç günü dahil, bitiş günü hariç kabul edilir.</div>
+<p class="sub" style="line-height:1.6;margin-top:12px">Bu araç bilgilendirme ve yaklaşık hesaplama amacı taşır. Kesin alacak miktarı; kararın hüküm fıkrasına, faiz türüne, temerrüt durumuna, ödeme/infaz tarihine ve uygulanacak mevzuata göre değişebilir.</p>
+</section>
+</div>
+</main>
+<footer class="footer">
+<div>Kaynakların kontrolü için <a href="https://www.mevzuat.gov.tr/" target="_blank" rel="noopener">Mevzuat Bilgi Sistemi</a>, <a href="https://www.tcmb.gov.tr/" target="_blank" rel="noopener">TCMB</a> ve <a href="https://www.resmigazete.gov.tr/" target="_blank" rel="noopener">Resmî Gazete</a> kullanılabilir.</div>
+<div style="margin-top:8px">Hesaplamalar cihazında yapılır; girdiğin bilgiler herhangi bir sunucuya gönderilmez.</div>
+<div class="foot-links"><a href="https://github.com/trustindestiny/tuketici-hakem-heyeti-yasal-faiz" target="_blank" rel="noopener">GitHub deposu</a></div>
+</footer>
+</div>
+<div class="toast" id="toast" role="status">Kopyalandı</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const fmt=new Intl.NumberFormat('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const dateFmt=new Intl.DateTimeFormat('tr-TR',{day:'2-digit',month:'2-digit',year:'numeric',timeZone:'UTC'});
+let lastSummary='',lastValid=false;
+const defaults=[{date:'2006-01-01',rate:'9'},{date:'2024-06-01',rate:'24'},{date:'2026-07-31',rate:'31'}];
+function todayISO(){const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)}
+function parseMoney(raw){let s=String(raw||'').trim().replace(/\s|₺/g,'');if(!s)return NaN;if(s.includes(','))s=s.replace(/\./g,'').replace(',','.');else if((s.match(/\./g)||[]).length>1)s=s.replace(/\./g,'');const n=Number(s);return Number.isFinite(n)?n:NaN}
+function parseDate(iso){if(!iso)return null;const [y,m,d]=iso.split('-').map(Number),dt=new Date(Date.UTC(y,m-1,d));return dt.getUTCFullYear()===y&&dt.getUTCMonth()===m-1&&dt.getUTCDate()===d?dt:null}
+function isoDate(d){return d.toISOString().slice(0,10)}
+function dayDiff(a,b){return Math.round((b-a)/86400000)}
+function money(n){return fmt.format(n)+' TL'}
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+function error(msg){$('errorBox').textContent=msg;$('errorBox').classList.add('show');$('status').textContent='Kontrol gerekli';lastValid=false}
+function clearError(){$('errorBox').textContent='';$('errorBox').classList.remove('show')}
+function renderRateRows(items=defaults){const body=$('rateRows');body.innerHTML='';items.forEach(item=>{const tr=document.createElement('tr'),tdDate=document.createElement('td'),date=document.createElement('input');date.type='date';date.value=item.date;date.setAttribute('aria-label','Oran başlangıç tarihi');date.dataset.field='date';tdDate.append(date);const tdRate=document.createElement('td'),rate=document.createElement('input');rate.type='number';rate.min='0';rate.max='1000';rate.step='0.01';rate.value=item.rate;rate.className='rate';rate.setAttribute('aria-label','Yıllık faiz oranı yüzde');rate.dataset.field='rate';tdRate.append(rate);const tdRemove=document.createElement('td'),remove=document.createElement('button');remove.type='button';remove.className='remove';remove.textContent='×';remove.title='Bu dönemi sil';remove.setAttribute('aria-label','Bu oran dönemini sil');remove.addEventListener('click',()=>{tr.remove();calculate()});tdRemove.append(remove);tr.append(tdDate,tdRate,tdRemove);body.append(tr);date.addEventListener('input',calculate);rate.addEventListener('input',calculate)});calculate()}
+function getRates(){return [...$('rateRows').querySelectorAll('tr')].map(tr=>({date:tr.querySelector('[data-field="date"]').value,rate:Number(tr.querySelector('[data-field="rate"]').value)})).filter(x=>x.date&&Number.isFinite(x.rate)&&x.rate>=0).sort((a,b)=>a.date.localeCompare(b.date))}
+function resetOutput(){$('total').innerHTML='— <small>TL</small>';$('principalOut').textContent='—';$('interestOut').textContent='—';$('daysOut').textContent='—';$('periodsOut').textContent='—';$('resultMeta').textContent='Ana para ve tarihleri girerek hesaplamayı başlat.';$('status').textContent='Hesaplamaya hazır';$('breakdownWrap').innerHTML='<div class="empty">Henüz hesaplama yapılmadı.</div>';lastSummary='';lastValid=false}
+function calculate(){
+clearError();const principal=parseMoney($('principal').value),start=parseDate($('startDate').value),end=parseDate($('endDate').value);
+if(!$('principal').value.trim()&&!$('startDate').value){resetOutput();return}
+if(!Number.isFinite(principal)||principal<=0){resetOutput();if($('principal').value.trim())error('Ana para alanına sıfırdan büyük geçerli bir tutar gir.');return}
+if(!start||!end){resetOutput();if($('startDate').value||$('endDate').value)error('Başlangıç ve bitiş tarihlerini kontrol et.');return}
+if(end<start){resetOutput();error('Bitiş tarihi, faiz başlangıç tarihinden önce olamaz.');return}
+const rates=getRates();if(!rates.length){resetOutput();error('En az bir geçerli faiz dönemi eklemelisin.');return}
+for(let i=1;i<rates.length;i++)if(rates[i].date===rates[i-1].date){resetOutput();error('Faiz dönemi başlangıç tarihleri birbirinden farklı olmalı.');return}
+if(start.getTime()===end.getTime()){renderResult(principal,0,0,[],start,end);return}
+const first=parseDate(rates[0].date);if(start<first){resetOutput();error('Başlangıç tarihi oran tablosundaki ilk dönemden önce. Eksik tarihsel oranı ekle veya ilk dönemin tarihini düzelt.');return}
+let totalDays=0,totalInterest=0;const segments=[];
+for(let i=0;i<rates.length;i++){const ps=parseDate(rates[i].date),pe=i<rates.length-1?parseDate(rates[i+1].date):null,ss=start>ps?start:ps;let se=end;if(pe&&pe<se)se=pe;if(ss<se){const days=dayDiff(ss,se),interest=principal*(rates[i].rate/100)*days/365,rounded=Math.round((interest+Number.EPSILON)*100)/100;segments.push({from:ss,to:se,days,rate:rates[i].rate,interest:rounded});totalDays+=days;totalInterest+=rounded}}
+if(totalDays!==dayDiff(start,end)){resetOutput();error('Oran tarihçesinde hesaplanamayan bir boşluk var. Oran başlangıç tarihlerini kontrol et.');return}
+totalInterest=Math.round((totalInterest+Number.EPSILON)*100)/100;renderResult(principal,totalInterest,totalDays,segments,start,end)
+}
+function renderResult(principal,interest,days,segments,start,end){
+const total=Math.round((principal+interest+Number.EPSILON)*100)/100;
+$('total').innerHTML=money(total).replace(' TL','')+' <small>TL</small>';$('principalOut').textContent=money(principal);$('interestOut').textContent=money(interest);$('daysOut').textContent=days.toLocaleString('tr-TR');$('periodsOut').textContent=segments.length.toLocaleString('tr-TR');$('resultMeta').textContent=dateFmt.format(start)+' – '+dateFmt.format(end)+' · Başlangıç dahil, bitiş hariç';$('status').textContent='Hesaplandı';lastValid=true;
+if(segments.length){const table=document.createElement('table');table.innerHTML='<thead><tr><th>Dönem</th><th>Gün</th><th>Oran</th><th>Faiz</th></tr></thead>';const tbody=document.createElement('tbody');segments.forEach(s=>{const tr=document.createElement('tr'),vals=[dateFmt.format(s.from)+' – '+dateFmt.format(s.to),s.days.toLocaleString('tr-TR'),'%'+String(s.rate).replace('.',','),money(s.interest)];vals.forEach((v,i)=>{const td=document.createElement('td');td.textContent=v;if(i===3)td.style.fontWeight='800';tr.append(td)});tbody.append(tr)});table.append(tbody);$('breakdownWrap').innerHTML='';$('breakdownWrap').append(table)}else $('breakdownWrap').innerHTML='<div class="empty">Seçilen tarih aralığında faiz işleyen gün bulunmuyor.</div>';
+lastSummary=['YASAL FAİZ HESAPLAMA','Ana para: '+money(principal),'Faiz başlangıcı: '+dateFmt.format(start),'Hesaplama bitişi: '+dateFmt.format(end)+' (bitiş günü hariç)','Faiz işleyen gün: '+days,'Toplam faiz: '+money(interest),'Faiz dahil toplam: '+money(total),'Dönemler: '+segments.map(s=>dateFmt.format(s.from)+' - '+dateFmt.format(s.to)+': %'+s.rate+' / '+s.days+' gün / '+money(s.interest)).join(' | '),'Yöntem: Basit faiz, gerçek gün/365; dönem faizleri kuruşa yuvarlanmıştır.'].join('\n')
+}
+$('principal').addEventListener('input',calculate);$('startDate').addEventListener('input',calculate);$('endDate').addEventListener('input',calculate);
+$('addRate').addEventListener('click',()=>{const rates=getRates();let next='2027-01-01';if(rates.length)next=isoDate(new Date(parseDate(rates[rates.length-1].date).getTime()+86400000));renderRateRows([...rates,{date:next,rate:'31'}])});
+$('copyBtn').addEventListener('click',async()=>{if(!lastValid||!lastSummary){showToast('Önce geçerli bir hesaplama yap.');return}try{await navigator.clipboard.writeText(lastSummary)}catch(e){const ta=document.createElement('textarea');ta.value=lastSummary;document.body.append(ta);ta.select();document.execCommand('copy');ta.remove()}showToast('Hesaplama özeti kopyalandı.')});
+$('printBtn').addEventListener('click',()=>{if(!lastValid){showToast('Önce geçerli bir hesaplama yap.');return}window.print()});
+$('resetBtn').addEventListener('click',()=>{$('principal').value='';$('startDate').value='';$('endDate').value=todayISO();renderRateRows(defaults);clearError();resetOutput();showToast('Alanlar temizlendi.')});
+$('endDate').value=todayISO();renderRateRows(defaults);
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+})();
+</script>
+</body>
+</html>
