@@ -72,11 +72,7 @@
 <div class="actions"><button class="btn primary" id="copyBtn" type="button">Özeti kopyala</button><button class="btn secondary" id="printBtn" type="button">Yazdır / PDF</button><button class="btn ghost" id="resetBtn" type="button">Temizle</button></div>
 <div class="breakdown"><h3>Dönem dönem faiz dökümü</h3><div id="breakdownWrap"></div></div>
 </section>
-<section class="card">
-<div class="card-head"><div><h2>Hesaplama yöntemi</h2><p class="sub">Basit faiz · gerçek gün / 365</p></div><div class="section-no">03</div></div>
-<div class="note green">Faiz, her dönem için ana para üzerinden hesaplanır; birikmiş faize yeniden faiz yürütülmez. Hesaplamada başlangıç günü dahil, bitiş günü hariç kabul edilir.</div>
-<p class="sub" style="line-height:1.6;margin-top:12px">Bu araç bilgilendirme ve yaklaşık hesaplama amacı taşır. Kesin alacak miktarı; kararın hüküm fıkrasına, faiz türüne, temerrüt durumuna, ödeme/infaz tarihine ve uygulanacak mevzuata göre değişebilir.</p>
-</section>
+
 </div>
 </main>
 <footer class="footer">
@@ -105,7 +101,7 @@ function error(msg){$('errorBox').textContent=msg;$('errorBox').classList.add('s
 function clearError(){$('errorBox').textContent='';$('errorBox').classList.remove('show')}
 function renderRateRows(items=defaults){const body=$('rateRows');body.innerHTML='';items.forEach(item=>{const tr=document.createElement('tr'),tdDate=document.createElement('td'),date=document.createElement('input');date.type='date';date.value=item.date;date.setAttribute('aria-label','Oran başlangıç tarihi');date.dataset.field='date';tdDate.append(date);const tdRate=document.createElement('td'),rate=document.createElement('input');rate.type='number';rate.min='0';rate.max='1000';rate.step='0.01';rate.value=item.rate;rate.className='rate';rate.setAttribute('aria-label','Yıllık faiz oranı yüzde');rate.dataset.field='rate';tdRate.append(rate);const tdRemove=document.createElement('td'),remove=document.createElement('button');remove.type='button';remove.className='remove';remove.textContent='×';remove.title='Bu dönemi sil';remove.setAttribute('aria-label','Bu oran dönemini sil');remove.addEventListener('click',()=>{tr.remove();calculate()});tdRemove.append(remove);tr.append(tdDate,tdRate,tdRemove);body.append(tr);date.addEventListener('input',calculate);rate.addEventListener('input',calculate)});calculate()}
 function getRates(){return [...$('rateRows').querySelectorAll('tr')].map(tr=>({date:tr.querySelector('[data-field="date"]').value,rate:Number(tr.querySelector('[data-field="rate"]').value)})).filter(x=>x.date&&Number.isFinite(x.rate)&&x.rate>=0).sort((a,b)=>a.date.localeCompare(b.date))}
-function resetOutput(){$('total').innerHTML='— <small>TL</small>';$('principalOut').textContent='—';$('interestOut').textContent='—';$('daysOut').textContent='—';$('periodsOut').textContent='—';$('resultMeta').textContent='Ana para ve tarihleri girerek hesaplamayı başlat.';$('status').textContent='Hesaplamaya hazır';$('breakdownWrap').innerHTML='<div class="empty">Henüz hesaplama yapılmadı.</div>';lastSummary='';lastValid=false}
+function resetOutput(){$('total').innerHTML='— <small>TL</small>';$('principalOut').textContent='—';$('interestOut').textContent='—';$('daysOut').textContent='—';$('periodsOut').textContent='—';$('resultMeta').textContent='Ana para ve tarihleri girerek hesaplamayı başlat.';$('status').textContent='Hesaplamaya hazır';$('breakdownWrap').innerHTML='';lastSummary='';lastValid=false}
 function calculate(){
 clearError();const principal=parseMoney($('principal').value),start=parseDate($('startDate').value),end=parseDate($('endDate').value);
 if(!$('principal').value.trim()&&!$('startDate').value){resetOutput();return}
